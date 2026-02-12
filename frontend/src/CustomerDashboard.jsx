@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+//import axios from "axios";
+import api from "./api";
 import { useNavigate } from "react-router-dom";
 import "./styles/CustomerDashboard.css"
 
@@ -20,7 +21,7 @@ const CustomerDashboard = () => {
         }
 
         // Fetch Orders
-        axios.get(`http://localhost:8080/flashsale/orders/${userId}`)
+        api.get(`/api/flashsale/orders/${userId}`)
             .then(response => {
                 setOrders(response.data);
             })

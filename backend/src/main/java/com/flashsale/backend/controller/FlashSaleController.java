@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/flashsale")
-@CrossOrigin(origins = "http://localhost:5173") // Allow Frontend
+@CrossOrigin(origins = "*") // Allow Frontend
 public class FlashSaleController {
 
     @Autowired
@@ -143,7 +143,7 @@ public class FlashSaleController {
 
     // Edit product details
     @PutMapping("products/update/{id}")
-    @CrossOrigin(origins = "http://localhost:5173")
+    @CrossOrigin(origins = "*")
     public Product updateProduct(@PathVariable Long id, @RequestBody Product product ) {
         Product existingProduct = productRepository.findById(id).orElse(null);
         

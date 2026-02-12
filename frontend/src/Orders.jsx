@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
+import api from './api';
 import { useNavigate } from 'react-router-dom';
 import './styles/Admin.css';
 
@@ -11,7 +12,7 @@ const Orders = () => {
 
         const fetchOrders = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/flashsale/orders');
+                const response = await api.get('/api/flashsale/orders');
                 setOrders(response.data);
             } catch (error) {
                 console.error("Error fetching orders:", error);

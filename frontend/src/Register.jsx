@@ -1,6 +1,7 @@
 import React, { useState } from "react";    
 import { useNavigate } from 'react-router-dom';
-import axios from "axios";
+//import axios from "axios";
+import api from "./api";
 import './styles/Register.css';
 
 const Register = () => {
@@ -12,8 +13,8 @@ const Register = () => {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(
-                'http://localhost:8080/flashsale/register', 
+            const response = await api.post(
+                '/api/flashsale/register', 
                 {
                     username, 
                     password,

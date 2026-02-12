@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
+import api from './api';
 import { useNavigate } from 'react-router-dom';
 import './styles/Admin.css'; 
 
@@ -12,7 +13,7 @@ const Products = () => {
     useEffect(() => {
 
             const fetchProducts = () => {
-                axios.get('http://localhost:8080/flashsale/products')
+                api.get('/api/flashsale/products')
                 .then(res => {
                     const sortedData = res.data.sort((a, b) => a.id - b.id);
                     setData(sortedData)
@@ -26,7 +27,7 @@ const Products = () => {
     // Editing Logic
     const handleUpdate = async () => {
         try {
-            const response = await axios.put('http://localhost:8080/flashsale/products/update/' + editingProduct.id, editingProduct);
+            const response = await api.put('/api/flashsale/products/update/' + editingProduct.id, editingProduct);
             
             if (response.status === 200) {
                 setData(data.map(item => 
@@ -55,7 +56,7 @@ const Products = () => {
     const handleDelete = async (id) => {
             if (window.confirm("Are you sure you want to delete this product?")) {
             try {
-                await axios.delete(`http://localhost:8080/flashsale/products/delete/${id}`);
+                await api.delete(`/api/flashsale/products/delete/${id}`);
                 setData(data.filter(item => item.id !== id));
             } catch (error) {
                 console.error("Error deleting:", error);

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './styles/Admin.css';
+import api from './api';
 
 const AddProduct = () => {
     const navigate = useNavigate();
@@ -25,7 +26,7 @@ const AddProduct = () => {
                 price: parseFloat(product.price),
                 stockQuantity: parseInt(product.stockQuantity)
             }
-            await axios.post('http://localhost:8080/flashsale/products/add', payload);
+            await api.post('/api/flashsale/products/add', payload);
             alert('Product added successfully');
             navigate('/admin')
         } catch (error) { 

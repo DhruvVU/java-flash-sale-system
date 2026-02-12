@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+//import axios from 'axios';
 import './styles/Home.css';
+import api from './api';
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -12,7 +13,7 @@ function Home() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/flashsale/products');
+        const response = await api.get('/api/flashsale/products');
         const sortedData =  response.data.sort((a, b) => a.id - b.id);
         setProducts(sortedData);
 
@@ -45,7 +46,7 @@ function Home() {
         return;
       }
 
-      const response = await axios.post(`http://localhost:8080/flashsale/buy?userId=${userId}&productId=${productId}`);
+      const response = await api.post(`/api/flashsale/buy?userId=${userId}&productId=${productId}`);
       alert(response.data); 
 
       window.location.reload();

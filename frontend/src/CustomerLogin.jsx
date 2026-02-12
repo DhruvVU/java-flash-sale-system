@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+//import axios from 'axios';
+import api from './api';
 import './styles/CustomerLogin.css';
 
 const Login = () => {
@@ -13,7 +14,7 @@ const Login = () => {
         e.preventDefault(); // prevents page reload on form submit
 
         try { 
-            const response = await axios.post('http://localhost:8080/flashsale/auth/login', {
+            const response = await api.post('/api/flashsale/auth/login', {
                 username: username,
                 password: password
             });

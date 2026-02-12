@@ -1,0 +1,7 @@
+psql 'postgresql://neondb_owner:npg_Oj28VKEsybcd@ep-silent-dream-ain2so6k.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require'
+
+jdbc:postgresql://ep-silent-dream-ain2so6k.c-4.us-east-1.aws.neon.tech/neondb?user=neondb_owner&password=npg_Oj28VKEsybcd&sslmode=require&channelBinding=require
+
+spring.datasource.url=jdbc:postgresql://ep-silent-dream-ain2so6k.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require
+spring.datasource.username=neondb_owner
+spring.datasource.password=npg_Oj28VKEsybcd

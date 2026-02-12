@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from "react";
-import axios from 'axios';
+//import axios from 'axios';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Curve } from 'recharts';
 import { useNavigate } from "react-router-dom";
 import './styles/Admin.css'
+import api from "./api";
 
 const Admin = () => {
     const [data, setData] = useState([]);
@@ -11,7 +12,7 @@ const Admin = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/flashsale/products');
+                const response = await api.get('/api/flashsale/products');
                 setData(response.data);
             } catch (error) {
                 console.error("Error fetching admin data", error)
