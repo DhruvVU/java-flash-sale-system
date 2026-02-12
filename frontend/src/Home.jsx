@@ -57,6 +57,10 @@ function Home() {
     }
   };
 
+  if (!products || products.length === 0) {
+    return <h2>No products found. The sale is yet to be commenced</h2>;
+  }
+
   return (
     <div className="app-wrapper">
 
