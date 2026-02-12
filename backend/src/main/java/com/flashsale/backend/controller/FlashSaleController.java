@@ -143,7 +143,6 @@ public class FlashSaleController {
 
     // Edit product details
     @PutMapping("products/update/{id}")
-    @CrossOrigin(origins = "*")
     public Product updateProduct(@PathVariable Long id, @RequestBody Product product ) {
         Product existingProduct = productRepository.findById(id).orElse(null);
         

@@ -13,7 +13,7 @@ function Home() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await api.get('/api/flashsale/products');
+        const response = await api.get('/flashsale/products');
         const sortedData =  response.data.sort((a, b) => a.id - b.id);
         setProducts(sortedData);
 
