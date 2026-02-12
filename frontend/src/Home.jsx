@@ -8,11 +8,13 @@ function Home() {
   const [products, setProducts] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+        setLoading(true);
         const response = await api.get('/flashsale/products');
         const sortedData =  response.data.sort((a, b) => a.id - b.id);
         setProducts(sortedData);
@@ -29,6 +31,8 @@ function Home() {
 
       } catch(error) {
         console.error("Error fetching products: ", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -57,10 +61,19 @@ function Home() {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="loading-spinner">
+        <div className="spinner"></div>
+        Loading Flash Deals...
+      </div>
+    );
+  }
+
   if (!products || products.length === 0) {
     return <h2>No products found. The sale is yet to be commenced</h2>;
   }
-
+  
   return (
     <div className="app-wrapper">
 
@@ -72,7 +85,7 @@ function Home() {
             className="logo"
             onDoubleClick={() => navigate('/AdminLogin')}
             style={{cursor: 'pointer'}}
-            title='Double click for admin'
+            title='Double click for admin'  
           >
             ⚡ FlashSale
           </div>
@@ -130,7 +143,9 @@ function Home() {
                   <img 
                     src={product.imageUrl || "https://via.placeholder.com/300"} 
                     alt={product.name} 
-                    className="product-image" />
+                    className="product-image" 
+                    onError={(e) => { e.target.src = "https://via.placeholder.com/300"; }}  
+                  />
                 </div>
 
                 <div className="card-details">
