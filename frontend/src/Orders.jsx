@@ -12,7 +12,7 @@ const Orders = () => {
 
         const fetchOrders = async () => {
             try {
-                const response = await api.get('/api/flashsale/orders');
+                const response = await api.get('/flashsale/orders');
                 setOrders(response.data);
             } catch (error) {
                 console.error("Error fetching orders:", error);

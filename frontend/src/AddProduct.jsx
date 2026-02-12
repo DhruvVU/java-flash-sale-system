@@ -26,7 +26,7 @@ const AddProduct = () => {
                 price: parseFloat(product.price),
                 stockQuantity: parseInt(product.stockQuantity)
             }
-            await api.post('/api/flashsale/products/add', payload);
+            await api.post('/flashsale/products/add', payload);
             alert('Product added successfully');
             navigate('/admin')
         } catch (error) { 

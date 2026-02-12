@@ -11,7 +11,7 @@ const Customers = () => {
     useEffect(() => {
         const fetchCustomers = async () => {
             try{
-                const response = await api.get('/api/flashsale/customers');
+                const response = await api.get('/flashsale/customers');
                 setData(response.data);
             } catch(error) {
                 console.error("Error fetching Customer List: ", error);

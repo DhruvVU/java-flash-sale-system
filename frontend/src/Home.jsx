@@ -46,7 +46,7 @@ function Home() {
         return;
       }
 
-      const response = await api.post(`/api/flashsale/buy?userId=${userId}&productId=${productId}`);
+      const response = await api.post(`/flashsale/buy?userId=${userId}&productId=${productId}`);
       alert(response.data); 
 
       window.location.reload();

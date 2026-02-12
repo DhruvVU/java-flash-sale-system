@@ -21,7 +21,7 @@ const CustomerDashboard = () => {
         }
 
         // Fetch Orders
-        api.get(`/api/flashsale/orders/${userId}`)
+        api.get(`/flashsale/orders/${userId}`)
             .then(response => {
                 setOrders(response.data);
             })

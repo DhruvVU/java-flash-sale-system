@@ -14,7 +14,7 @@ const Login = () => {
         e.preventDefault(); // prevents page reload on form submit
 
         try { 
-            const response = await api.post('/api/flashsale/auth/login', {
+            const response = await api.post('/flashsale/auth/login', {
                 username: username,
                 password: password
             });

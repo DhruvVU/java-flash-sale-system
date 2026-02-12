@@ -14,7 +14,7 @@ const Register = () => {
         e.preventDefault();
         try {
             const response = await api.post(
-                '/api/flashsale/register', 
+                '/flashsale/register', 
                 {
                     username, 
                     password,

@@ -12,7 +12,7 @@ const Admin = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await api.get('/api/flashsale/products');
+                const response = await api.get('/flashsale/products');
                 setData(response.data);
             } catch (error) {
                 console.error("Error fetching admin data", error)
