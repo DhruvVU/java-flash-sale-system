@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 //import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 import './styles/Admin.css';
 import api from './api';
 
@@ -27,16 +28,17 @@ const AddProduct = () => {
                 stockQuantity: parseInt(product.stockQuantity)
             }
             await api.post('/flashsale/products/add', payload);
-            alert('Product added successfully');
+            toast.success('Product added successfully!');
             navigate('/admin')
         } catch (error) { 
             console.error("Error adding product:", error)
-            alert("Failed to add product");
+            toast.error("Failed to add product");
         }
     };
 
     return (
     <div className="admin-container" style={{ justifyContent: 'center', alignItems: 'center' }}>
+
       <div className="dashboard-card" style={{ width: '400px' }}>
         <h2 style={{ marginBottom: '20px', textAlign: 'center' }}>Add New Product</h2>
         

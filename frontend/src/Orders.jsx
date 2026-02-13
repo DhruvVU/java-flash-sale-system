@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 //import axios from 'axios';
 import api from './api';
 import { useNavigate } from 'react-router-dom';
+import { Toaster, toast } from 'react-hot-toast';
 import './styles/Admin.css';
 
 const Orders = () => {
@@ -16,6 +17,7 @@ const Orders = () => {
                 setOrders(response.data);
             } catch (error) {
                 console.error("Error fetching orders:", error);
+                toast.error("Error fetching orders!");
             }
          };
         

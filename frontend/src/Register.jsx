@@ -1,5 +1,6 @@
 import React, { useState } from "react";    
 import { useNavigate } from 'react-router-dom';
+import { toast } from "react-hot-toast";
 //import axios from "axios";
 import api from "./api";
 import './styles/Register.css';
@@ -23,13 +24,13 @@ const Register = () => {
             );
             
             if (response.status === 200) {
-                alert("Regsitration Successful");
+                toast.success("Regsitration Successful");
                 navigate('/customerLogin');
             }
 
         } catch (error) {
             console.error("Error registering user:", error);
-            alert("Registration Failed");
+            toast.error("Registration Failed");
             setErr("Invalid username or password! Please type a different username/password");
         }
     };
@@ -69,7 +70,7 @@ const Register = () => {
                         />
                     </div>
 
-                    {err & <div className="error-message">⚠️ {err}</div>}
+                    {err && <div className="error-message">⚠️ {err}</div>}
 
                     <button className="register-btn" type="submit">
                         Sign Up

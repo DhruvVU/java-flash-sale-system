@@ -1,5 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import Home from './Home';
 import Admin from './Admin'
 import AdminLogin from './AdminLogin'
@@ -26,6 +27,38 @@ const ProtectedRoute = ({ children }) => {
 function App() {
   return (
     <Router>
+
+      {/* Central styling for toast messages in all files */}
+      <Toaster
+        position='top-center'
+        reverseOrder={false}
+        gutter={8}
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: '#1a1a1a', 
+            color: '#fff',         
+            border: '1px solid #333',
+            fontSize: '14px',
+            padding: '12px 24px',
+            borderRadius: '12px',
+          },
+          success: {
+            iconTheme: {
+              primary: '#ffd700',   
+              secondary: '#1a1a1a',
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: '#ff4b4b',   
+              secondary: '#fff',
+            },
+          },
+        }}
+      />
+
+      {/* Rest of the routes continue here */}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/adminlogin' element={<AdminLogin />} />

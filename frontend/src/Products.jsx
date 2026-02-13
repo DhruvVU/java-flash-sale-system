@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import api from './api';
 import { useNavigate } from 'react-router-dom';
 import './styles/Admin.css'; 
+import { toast } from 'react-hot-toast';
 
 const Products = () => {
     const [data, setData] = useState([]);
@@ -36,11 +37,11 @@ const Products = () => {
 
                 setEditingProduct(null);
 
-                alert("Update successful");
+                toast.success("Product details updated successfully");
             }
         } catch (error) {
             console.error("Error updating product:", error);
-            alert("Failed to update");
+            toast.error("Failed to update details");
         }
     };
 
@@ -58,9 +59,10 @@ const Products = () => {
             try {
                 await api.delete(`/flashsale/products/delete/${id}`);
                 setData(data.filter(item => item.id !== id));
+                toast.success("Product successfully removed from Inventory!");
             } catch (error) {
                 console.error("Error deleting:", error);
-                alert("Failed to delete");
+                toast.error("Failed to delete product");
             }
             }
         };

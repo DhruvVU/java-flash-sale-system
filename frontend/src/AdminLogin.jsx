@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 import './styles/AdminLogin.css';
 //import axios from 'axios';
 import api from './api';
@@ -7,7 +8,6 @@ import api from './api';
 const Login = () => {
     const[username, setUsername] = useState('');
     const[password, setPassword] = useState('');
-    const[error, setError] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -23,7 +23,7 @@ const Login = () => {
                 const user = response.data;
 
                 if (user.role === 'CUSTOMER') {
-                    alert("Customers must use customer login page!");
+                    toast.error("Customers must use customer login page!");
                     sessionStorage.clear();
                     return;
                 }
@@ -38,7 +38,7 @@ const Login = () => {
 
             }
         } catch (err) { 
-            setError("Invalid username or password!");
+            toast.error("Invalid username or password!");
             console.error("Login failed:", err);
         }
     };
@@ -67,8 +67,6 @@ const Login = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)} 
                     />
-
-                    {error && <span className="error-msg">{error}</span>}
 
                     <button 
                         onClick={handleLogin} 

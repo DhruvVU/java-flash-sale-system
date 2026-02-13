@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 //import axios from 'axios';
 import './styles/Home.css';
 import api from './api';
@@ -11,32 +12,33 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        setLoading(true);
-        const response = await api.get('/flashsale/products');
-        const sortedData =  response.data.sort((a, b) => a.id - b.id);
-        setProducts(sortedData);
+  const fetchProduct = async (isInitialLoad = false) => {
+    try {
+      if (isInitialLoad) setLoading(true);
+      setLoading(true);
+      const response = await api.get('/flashsale/products');
+      const sortedData =  response.data.sort((a, b) => a.id - b.id);
+      setProducts(sortedData);
 
-        const auth = sessionStorage.getItem('isAuthenticated');
-        const role = sessionStorage.getItem('role');
-        const user = sessionStorage.getItem('username');
+      const auth = sessionStorage.getItem('isAuthenticated');
+      const role = sessionStorage.getItem('role');
+      const user = sessionStorage.getItem('username');
 
-        // Check if already logged in
-        if (auth == 'true' && role == 'CUSTOMER') {
-          setIsLoggedIn(true);
-          setUsername(user || "Customer");
-        }
-
-      } catch(error) {
-        console.error("Error fetching products: ", error);
-      } finally {
-        setLoading(false);
+      // Check if already logged in
+      if (auth == 'true' && role == 'CUSTOMER') {
+        setIsLoggedIn(true);
+        setUsername(user || "Customer");
       }
-    };
 
-    fetchProduct();
+    } catch(error) {
+      console.error("Error fetching products: ", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  
+  useEffect(() => {
+    fetchProduct(true);
   }, []); // run once
 
   // Handle Buy Click
@@ -45,19 +47,23 @@ function Home() {
       const userId = sessionStorage.getItem('userId');
 
       if (!isLoggedIn || userId === null) {
-        alert("Please login to buy items");
+        toast.error("Please login to buy items!");
         navigate("/customerLogin");
         return;
       }
 
       const response = await api.post(`/flashsale/buy?userId=${userId}&productId=${productId}`);
-      alert(response.data); 
-
-      window.location.reload();
+      
+      if (response.data.toLowerCase().includes("success")) {
+        toast.success('Order Placed Successfully! Check My Orders.');
+        fetchProduct(false);
+      } else {
+          toast.error(response.data);
+      }
 
     } catch (error) {
       console.error("Purchase Error: ", error);
-      alert("Purchase Failed");
+      toast.error("Connection Error. Please try again!");
     }
   };
 
@@ -161,7 +167,7 @@ function Home() {
                       : "Out of Stock"
                     }
                   </div>
-
+                  
                   <button
                     onClick={() => handleBuy(product.id)}
                     disabled={product.stockQuantity <= 0}
