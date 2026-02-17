@@ -74,36 +74,38 @@ const CustomerDashboard = () => {
                         </button>
                     </div>
                 ) : (
-                    <table className="customer-table">
-                        <thead>
-                            <tr>
-                                <th>Order ID</th>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Date</th> 
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            {orders.map((order) => (
-                                <tr key={order.id}>
-                                    <td className="id-col">#{order.id}</td>
-                                    <td className="product-col">{order.productName || "Unknown"}</td>
-                                    <td className="price-col">
-                                        {new Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0
-                                        }).format(order.pricePaid)}
-                                    </td>
-                                    <td>{new Date(order.orderTime).toLocaleDateString()}</td>
-                                    <td>
-                                        <span className={`status-badge ${order.status === 'SUCCESS' ? 'success' : 'pending'}`}>
-                                            {order.status || "CONFIRMED"}
-                                        </span>
-                                    </td>
+                    <div className="responsive-table">
+                        <table className="customer-table" style={{ minWidth: '700px'}}>
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Product</th>
+                                    <th>Price</th>
+                                    <th>Date</th> 
+                                    <th>Status</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+
+                            <tbody>
+                                {orders.map((order) => (
+                                    <tr key={order.id}>
+                                        <td className="id-col">#{order.id}</td>
+                                        <td className="product-col">{order.productName || "Unknown"}</td>
+                                        <td className="price-col">
+                                            {new Intl.NumberFormat('en-IN', {style: 'currency', currency: 'INR', maximumFractionDigits: 0
+                                            }).format(order.pricePaid)}
+                                        </td>
+                                        <td>{new Date(order.orderTime).toLocaleDateString()}</td>
+                                        <td>
+                                            <span className={`status-badge ${order.status === 'SUCCESS' ? 'success' : 'pending'}`}>
+                                                {order.status || "CONFIRMED"}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 )}
             </div>
         </div>

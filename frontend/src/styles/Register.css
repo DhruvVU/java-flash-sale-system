@@ -1,3 +1,6 @@
+* {
+    box-sizing: border-box;
+}
 .register-wrapper {
     min-height: 100vh;
     background-color: #0f172a; 
@@ -26,10 +29,11 @@
     padding: 2.5rem;
     border-radius: 16px;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
-    width: 100%;
+    width: 90%;
     max-width: 400px;
     border: 1px solid #334155;
     text-align: center;
+    box-sizing: border-box;
 }
 
 h2 {
@@ -120,4 +124,21 @@ h2 {
 
 .login-link span:hover {
     text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .register-header {
+        position: static;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .register-box {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
 }

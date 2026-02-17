@@ -79,7 +79,7 @@ const Orders = () => {
                             {orders.length === 0 ? (
                                 <tr>
                                     <td colSpan="6" style={{ padding: '20px', textAlign: 'center', color: '#666' }}>
-                                        No orders found. Go buy something!
+                                        No orders found. The customers have not started shopping yet!
                                     </td>
                                 </tr>
                             ) : (

@@ -42,6 +42,16 @@
   justify-content: space-between; 
   align-items: center;
   margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .logo {
@@ -235,16 +245,39 @@ button {
     display: none !important; 
   }
 
+  .login-btn, .logout-btn {
+    padding: 8px 15px;
+    font-size: 0.8rem; 
+    flex: 1;
+    max-width: 150px;
+  }
+
+  .site-header {
+    padding: 15px 0;
+  }
+
   .header-inner {
-    padding: 0 10px; 
+    flex-direction: column;
+    text-align: center;
   }
 
   .logo {
-    font-size: 1.2rem; 
+    font-size: 1.8rem;
+    margin-bottom: 5px;
   }
 
-  .login-btn, .logout-btn {
-    padding: 6px 12px;
-    font-size: 0.8rem; 
+  .nav-buttons {
+    width: 100%;
+    justify-content: center;
+    gap: 8px;
   }
+
+  .nav-buttons span {
+    width: 100%;
+    display: block;
+    margin-right: 0 !important;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+  }
+
 }

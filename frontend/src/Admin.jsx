@@ -97,7 +97,7 @@ const Admin = () => {
           </div>
 
           {/* CHART SECTION */}
-          <div className="dashboard-card" style={{ height: '500px' }}>
+          <div className="dashboard-card chart-container">
               <h3 style={{ marginBottom: '20px' }}>Live Stock Levels</h3>
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={data}>

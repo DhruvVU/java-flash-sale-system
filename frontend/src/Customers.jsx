@@ -43,46 +43,51 @@ const Customers = () => {
 
                 {/* Table content starts */}
                 <div className="dashboard-card">
-                    <table style={{ width: '100%', borderCollapse: 'collapse', color: 'var(--text-primary)'}}>
 
-                        <thead>
-                            <tr style={{
-                                background: 'rgba(255, 255, 255, 0.05)', 
-                                borderBottom: '2px solid #334155', 
-                                textAlign: 'left' 
-                            }}>
-                                <th style={{ padding: '15px', color: '#fff', textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '1px' }}>
-                                    Customer</th>
-                                <th style={{ padding: '15px', color: '#fff', textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '1px' }}>
-                                    Orders</th>
-                                <th style={{ padding: '15px', color: '#fff', textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '1px' }}>
-                                    Total Spent</th>
-                                <th style={{ padding: '15px', color: '#fff', textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '1px' }}>
-                                    Last Active</th>
-                            </tr>
-                        </thead>
+                    {/* Different styling to make this responsive on mobile screens */}
+                    <div className="responsive-table">
+                        <table style={{ width: '100%', borderCollapse: 'collapse', color: 'var(--text-primary)', minWidth: '600px'}}>
 
-                        <tbody>
-                            {data.map((customer) => (
-                                <tr key={customer.userId} style={{ borderBottom: '1px solid #1e293b' }}>
-                                    <td style={{ padding: '15px' }}>{customer.userName}</td>
-                                    <td style={{ padding: '15px' }}>{customer.orderCount}</td>
-                                    <td style={{ padding: '15px' }}>
-                                        <span style={{ 
-                                            color: customer.totalSpent > 100000 ? 'var(--accent-success)' : '#fff',
-                                            fontWeight: 'bold' 
-                                        }}>
-                                            ₹{customer.totalSpent.toLocaleString('en-IN')}
-                                        </span>
-                                    </td>
-                                    <td style={{ padding: '15px' }}>
-                                        {customer.lastActive ? new Date(customer.lastActive).toLocaleString() : "N/A"}
-                                    </td>
+                            <thead>
+                                <tr style={{
+                                    background: 'rgba(255, 255, 255, 0.05)', 
+                                    borderBottom: '2px solid #334155', 
+                                    textAlign: 'left' 
+                                }}>
+                                    <th style={{ padding: '15px', color: '#fff', textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '1px' }}>
+                                        Customer</th>
+                                    <th style={{ padding: '15px', color: '#fff', textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '1px' }}>
+                                        Orders</th>
+                                    <th style={{ padding: '15px', color: '#fff', textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '1px' }}>
+                                        Total Spent</th>
+                                    <th style={{ padding: '15px', color: '#fff', textTransform: 'uppercase', fontSize: '0.85rem', letterSpacing: '1px' }}>
+                                        Last Active</th>
                                 </tr>
-                            ))}
-                        </tbody>
+                            </thead>
 
-                    </table>
+                            <tbody>
+                                {data.map((customer) => (
+                                    <tr key={customer.userId} style={{ borderBottom: '1px solid #1e293b' }}>
+                                        <td style={{ padding: '15px' }}>{customer.userName}</td>
+                                        <td style={{ padding: '15px' }}>{customer.orderCount}</td>
+                                        <td style={{ padding: '15px' }}>
+                                            <span style={{ 
+                                                color: customer.totalSpent > 100000 ? 'var(--accent-success)' : '#fff',
+                                                fontWeight: 'bold' 
+                                            }}>
+                                                ₹{customer.totalSpent.toLocaleString('en-IN')}
+                                            </span>
+                                        </td>
+                                        <td style={{ padding: '15px' }}>
+                                            {customer.lastActive ? new Date(customer.lastActive).toLocaleString() : "N/A"}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+
+                        </table>
+                    </div>
+                    
                 </div>
 
             </main>

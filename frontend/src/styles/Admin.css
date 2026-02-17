@@ -75,6 +75,10 @@
   border: 1px solid #334155; 
 }
 
+.chart-container {
+  height: 500px;
+}
+
 .stat-title {
   color: var(--text-secondary);
   font-size: 0.9rem;
@@ -116,4 +120,59 @@
 .btn-logout:hover {
   background-color: var(--accent-danger);
   color: white;
+}
+
+/* Response table styling for customer insights table */
+.responsive-table {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 768px) {
+  .admin-container {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    padding: 2px;
+    border-right: none;
+    border-bottom: 1px solid #334155;
+  }
+
+  .sidebar-title {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .dashboard-content {
+    padding: 20px;
+  }
+
+  .stat-value {
+    font-size: 1.8rem;
+  }
+
+  nav {
+    flex-direction: row !important;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    gap: 10px;
+  }
+
+  .nav-item {
+    white-space: nowrap;
+    margin-bottom: 0;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+
+  .btn-logout {
+    margin-top: 15px;
+  }
+
+  .chart-container {
+    height: 300px;
+  }
 }
